@@ -12,7 +12,7 @@ int main()
     scanf("%d",&n);
     while(1)
     {
-        printf("QUUEUE OPERATION USING ARRAY :\n");
+        printf("\nQUUEUE OPERATION USING ARRAY :\n");
         printf("-----------------------");
         printf("\n\t1.INSERTION\n\t2.DELETION\n\t3.DISPLAY\n\t4.EXIT");
         printf("\nenter thr choice :");
@@ -40,49 +40,57 @@ int main()
 }
 void enqueue(int x)
 {
-    if(rear==n-1)
+    if(front==-1 && rear==-1)
     {
-        printf("queue is overflow\n");
-    }
-    else 
-    {
-        if(front==-1)
-    
-        front=0;
-    }
-        rear++;
+        front=rear=0;
         queue[rear]=x;
+    }
+    else if((rear+1)%n==front)
+    {
+    printf("queue is full.\n");
        
+    }
+    else
+    {
+        rear=(rear+1)%n;
+        queue[rear]=x;
+    }
 
     }  
 
 void dequeue()
 {
-    if(front==-1)
+    if(front==-1 && rear==-1)
     {
         printf("****queue is underflow*****\n");
     }
-    else {
-        printf("the deleted elemnt is %d\n",queue[front]);
-        front++;
-        if(front>rear)//only happens when the last element was dequeued
-        {
-        front=rear=-1;
-        }
-
+    else if(front==rear)
+    {
+        printf("deleted element is %d\n",queue[front]);
+       front=rear=-1;
+    }
+    else
+    {
+        printf("deleted element is %d\n",queue[front]);
+        front=(front+1)%n;
     }
 }
 
 void display()
 {
-    if(rear==-1)
+    if(front==-1 && rear==-1)
     {
-        printf("stack is empty\n");
+        printf("queue is empty");
     }
     else
     {
-        printf("list of queue :\n");
-        for(i=front;i<=rear;i++)
-            printf("%d\n",queue[i]);
+        int i=front;
+        printf("queue is :\n");
+        while(i!=rear)
+        {
+            printf("%d ",queue[i]);
+            i=(i+1)%n;
+        }
+        printf("%d \n",queue[rear]);
     }
 }
