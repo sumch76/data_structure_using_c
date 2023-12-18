@@ -39,3 +39,53 @@ int main()
 
     return 0;
 }
+#include <stdio.h>
+
+struct Item
+{
+    int value;
+    int weight;
+};
+
+int main()
+{
+    struct Item a[] = { {21, 7}, {24, 4}, {12, 6}, {40, 5}, {30, 6} };
+    int n = 5, wt = 20, amount = 0;
+
+    // Simple sorting based on value-to-weight ratio using bubble sort
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            double ratio1 = (double)a[j].value / a[j].weight;
+            double ratio2 = (double)a[j + 1].value / a[j + 1].weight;
+
+            if (ratio1 < ratio2)
+            {
+                // Swap items
+                struct Item temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+
+    // Calculate the final amount
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i].weight <= wt)
+        {
+            wt = wt - a[i].weight;
+            amount = amount + a[i].value;
+        }
+        else
+        {
+            amount = amount + (int)((a[i].value / (double)a[i].weight) * wt);
+            break;
+        }
+    }
+
+    printf("Final Amount = %d\n", amount);
+
+    return 0;
+}
