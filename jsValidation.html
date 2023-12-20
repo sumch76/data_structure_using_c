@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+</head>
+<body>
+<form id="registrationForm">
+<label for="firstName">First Name:</label>
+<input type="text" id="firstName" required>
+<br>
+<label for="lastName">Last Name:</label>
+<input type="text" id="lastName" required>
+<br>
+<label for="address">Address:</label>
+<input type="text" id="address" required>
+<br>
+<label for="password">Password:</label>
+<input type="password" id="password" required>
+<br>
+<label for="email">E-mail:</label>
+<input type="email" id="email" required>
+<br>
+<label for="mobileNumber">Mobile Number:</label>
+<input type="tel" id="mobileNumber" required>
+<br>
+<button type="button" onclick="validateForm()">Submit</button>
+</form>
+<script>
+function validateForm() {
+var firstName = document.getElementById('firstName').value;
+var lastName = document.getElementById('lastName').value;
+var address = document.getElementById('address').value;
+18
+var password = document.getElementById('password').value;
+var email = document.getElementById('email').value;
+var mobileNumber = document.getElementById('mobileNumber').value;
+// Regular expressions for validation
+var nameRegex = /^[a-zA-Z]{6,}$/;
+var passwordRegex = /^.{6,}$/;
+var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+var mobileRegex = /^\d{10}$/;
+// Validation
+if (!nameRegex.test(firstName)) {
+alert('First Name should contain alphabets and be at least 6 characters long.');
+return;
+}
+if (!nameRegex.test(lastName)) {
+alert('Last Name should not be empty.');
+return;
+}
+if (!nameRegex.test(address)) {
+alert('Address should not be empty.');
+return;
+}
+if (!passwordRegex.test(password)) {
+alert('Password should be at least 6 characters long.');
+return;
+}
+if (!emailRegex.test(email)) {
+alert('Invalid E-mail address.');
+return;
+}
+if (!mobileRegex.test(mobileNumber)) {
+alert('Mobile Number should contain 10 digits only.');
+return;
+}
+// If all validations pass, you can submit the form or perform further actions.
+alert('Form submitted successfully!');
+}
+</script>
+</body>
+</html
